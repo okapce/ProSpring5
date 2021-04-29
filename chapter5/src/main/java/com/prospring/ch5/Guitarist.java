@@ -9,4 +9,12 @@ public class Guitarist implements Singer {
 	public void sing(){
 		System.out.println(lyric);
 	}
+	
+	public void sing2() {
+		System.out.println("Just keep me where the light is");
+	}
+	
+	public void rest() {
+		System.out.println("zzz");
+	}
 }
