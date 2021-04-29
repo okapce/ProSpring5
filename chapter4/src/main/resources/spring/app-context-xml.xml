@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<beans xmlns="http://www.springframework.org/schema/beans"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xmlns:context="http://www.springframework.org/schema/context"
+		 xmlns:p="http://www.springframework.org/schema/p"
+		 xmlns:c="http://www.springframework.org/schema/c"
+		 xsi:schemaLocation="http://www.springframework.org/schema/beans
+		 http://www.springframework.org/schema/beans/spring-beans.xsd
+		 http://www.springframework.org/schema/context
+		 http://www.springframework.org/schema/context/spring-context.xsd"
+		 default-lazy-init="true">
+		 
+		<bean id="singerOne"
+		 	class="com.prospring.ch4.Singer"
+		 	init-method="init" p:name="John Mayer" p:age="39"/>
+		<bean id="singerTwo"
+		 	class="com.prospring.ch4.Singer"
+		 	init-method="init" p:age="72"/>
+		<bean id="singerThree"
+		 	class="com.prospring.ch4.Singer"
+		 	init-method="init" p:name="John Butler"/>
+		
+		<bean id="singerOneI"
+		 	class="com.prospring.ch4.SingerWithInterface"
+		 	p:name="John Mayer" p:age="39"/>
+		<bean id="singerTwoI"
+			class="com.prospring.ch4.SingerWithInterface"
+		 	p:age="72"/>
+		<bean id="singerThreeI"
+		 	class="com.prospring.ch4.SingerWithInterface"
+		 	p:name="John Butler"/>
+		 	
+		<context:annotation-config/>
+		<bean id="singerOneP"
+		 	class="com.prospring.ch4.SingerWithJSR250"
+		 	p:name="John Mayer" p:age="39"/>
+		<bean id="singerTwoP"
+			class="com.prospring.ch4.SingerWithJSR250"
+		 	p:age="72"/>
+		<bean id="singerThreeP"
+		 	class="com.prospring.ch4.SingerWithJSR250"
+		 	p:name="John Butler"/>
+		 	
+		<bean id="destructiveBean"
+			 class="com.prospring.ch4.DestructiveBean"
+			 destroy-method="destroy"
+			 p:filePath="G:\test.txt"/>
+			 
+		<bean id="destructiveBeanI"
+			 class="com.prospring.ch4.DestructiveBeanWithInterface"
+			 p:filePath="G:\test.txt"/>
+			 
+	 	<bean id="shutdownHook"
+ 			class="com.prospring.ch4.ShutdownHookBean"/>
+			 
+		<bean id="destructiveBeanJ"
+			 class="com.prospring.ch4.DestructiveBeanWithJSR250"
+			 p:filePath="G:\test.txt"/>
+			 
+		<bean id="johnMayer"
+ 					class="com.prospring.ch4.NamedSinger"/>
+ 					
+		<bean id="shaDigestFactory"
+			 class="com.prospring.ch4.MessageDigestFactory"
+			 p:algorithmName="SHA1"/>
+		
+		<bean id="defaultDigestFactory"
+			 class="com.prospring.ch4.MessageDigestFactory"/>
+		
+		<bean id="shaDigest"
+			 factory-bean="shaDigestFactory"
+			 factory-method="createInstance">
+		</bean>
+			 
+		<bean id="defaultDigest"
+			 factory-bean="defaultDigestFactory"
+			 factory-method="createInstance"/>
+		
+		<bean id="digester"
+			 class="com.prospring.ch4.MessageDigester"
+			 p:digest1-ref="shaDigest"
+			 p:digest2-ref="defaultDigest"/>
+			 
+			 
+		<bean id="publisher"
+			 class="com.prospring.ch4.Publisher"/>
+			 
+		<bean id="messageEventListener"
+			 class="com.prospring.ch4.MessageEventListener"/>
+		
+		<bean id="messageRenderer"
+			 class="com.prospring.ch2.decoupled.StandardOutMessageRenderer"
+			 p:messageProvider-ref="messageProvider"/>
+			 
+		<bean id="messageProvider"
+			 class="com.prospring.ch3.xml.ConfigurableMessageProvider"
+			 c:message="This is a configurable message"/>
+			
+</beans>
