@@ -59,5 +59,6 @@ public class AppConfig {
 	 @Bean public PlatformTransactionManager transactionManager() throws IOException {
 		 return new HibernateTransactionManager(sessionFactory());
 	 }
-	 */
+	 
+}
 
