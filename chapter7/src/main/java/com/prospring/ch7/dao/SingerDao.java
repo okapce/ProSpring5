@@ -2,7 +2,7 @@ package com.prospring.ch7.dao;
 
 import java.util.List;
 
-import com.prospring.ch6.entities.Singer;
+import com.prospring.ch7.entities.Singer;
 
 public interface SingerDao {
 	List<Singer> findAll();

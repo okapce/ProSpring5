@@ -1,13 +1,15 @@
-package com.prospring.ch6.entities;
+package com.prospring.ch7.entities;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -19,6 +21,8 @@ public class Album implements Serializable{
 	private Long singerId;
 	private String title;
 	private Date releaseDate;
+	
+	private Singer singer;
 	
 	@Id
 	 @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,12 +44,24 @@ public class Album implements Serializable{
 	public Date getReleaseDate() {
 		return releaseDate;
 	}
+	
 	public void setId(Long id) {
 		this.id = id;
 	}
 	public void setSingerId(Long singerId) {
 		this.singerId = singerId;
 	}
+	
+	@ManyToOne
+	@JoinColumn(name = "SINGER_ID")
+	public Singer getSinger() {
+		return this.singer;
+	}
+	
+	public void setSinger(Singer singer) {
+		this.singer = singer;
+	}
+	
 	public void setTitle(String title) {
 		this.title = title;
 	}
