@@ -17,6 +17,9 @@ import org.apache.commons.logging.LogFactory;
 @Transactional
 @Repository("singerDao")
 public class SingerDaoImpl  implements SingerDao {
+	private static final Log logger = LogFactory.getLog(SingerDaoImpl.class);
+	private SessionFactory sessionFactory;
+	 
 	@Transactional//(readOnly = true)
 	public List<Singer> findAllWithAlbum() {
 		return sessionFactory.getCurrentSession().getNamedQuery("Singer.findAllWithAlbum").list();
@@ -29,9 +32,7 @@ public class SingerDaoImpl  implements SingerDao {
 		setParameter("id", id).uniqueResult();
 	}
 	
-	private static final Log logger = LogFactory.getLog(SingerDaoImpl.class);
 	
-	 private SessionFactory sessionFactory;
 	 
 	 public SessionFactory getSessionFactory() {
 	 return sessionFactory;
@@ -56,9 +57,10 @@ public class SingerDaoImpl  implements SingerDao {
 	 
 
 	@Override
-	public Singer save(Singer contact) {
-		// TODO Auto-generated method stub
-		return null;
+	public Singer save(Singer singer) {
+		sessionFactory.getCurrentSession().saveOrUpdate(singer);
+		logger.info("Singer saved with id: " + singer.getId());
+		return singer;
 	}
 	@Override
 	public void delete(Singer contact) {

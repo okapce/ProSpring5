@@ -1,15 +1,10 @@
 package com.prospring.ch7;
 
-
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-
-
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
@@ -19,46 +14,25 @@ import com.prospring.ch7.entities.Album;
 import com.prospring.ch7.entities.Instrument;
 import com.prospring.ch7.entities.Singer;
 
-@SpringBootApplication
-public class Chapter7Application {
-	private static Logger logger = LoggerFactory.getLogger(Chapter7Application.class);
-	
-	public static void main(String... args) {
-		GenericApplicationContext ctx = new AnnotationConfigApplicationContext(AppConfig.class);
-		SingerDao singerDao = ctx.getBean(SingerDao.class);
-		
-		Singer singer = new Singer();
-		 singer.setFirstName("BB");
-		 singer.setLastName("King");
-		 singer.setBirthDate(new Date( (new GregorianCalendar(1940, 8, 16)).getTime().getTime()));
-		 Album album = new Album();
-		 album.setTitle("My Kind of Blues");
-		 album.setReleaseDate(new java.sql.Date( (new GregorianCalendar(1961, 7, 18)).getTime().getTime()));
-		 singer.addAbum(album);
-		 album = new Album();
-		 album.setTitle("A Heart Full of Blues");
-		 album.setReleaseDate(new java.sql.Date( (new GregorianCalendar(1962, 3, 20)).getTime().getTime()));
-		 singer.addAbum(album);
-		 singerDao.save(singer);
-		 //assertNotNull(singer.getId());
-		 List<Singer> singers = singerDao.findAllWithAlbum();
-		 //assertEquals(4, singers.size());
-		 listSingersWithAlbum(singers);
-		 
-		 ctx.close();
-	}
-	
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.List;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
-	/*
-	//@Before
+public class SingerDaoTest {
+	private static Logger logger = LoggerFactory.getLogger(SingerDaoTest.class);
+	private GenericApplicationContext ctx;
+	private SingerDao singerDao;
+	
+	@Before
 	public void setUp(){
 		ctx = new AnnotationConfigApplicationContext(AppConfig.class);
 		singerDao = ctx.getBean(SingerDao.class);
-		//assertNotNull(singerDao);
+		assertNotNull(singerDao);
 	}
 	
-	
-	//@Test
+	@Test
 	public void testInsert(){
 		 Singer singer = new Singer();
 		 singer.setFirstName("BB");
@@ -73,33 +47,33 @@ public class Chapter7Application {
 		 album.setReleaseDate(new java.sql.Date( (new GregorianCalendar(1962, 3, 20)).getTime().getTime()));
 		 singer.addAbum(album);
 		 singerDao.save(singer);
-		 //assertNotNull(singer.getId());
+		 assertNotNull(singer.getId());
 		 List<Singer> singers = singerDao.findAllWithAlbum();
-		 //assertEquals(4, singers.size());
+		 assertEquals(4, singers.size());
 		 listSingersWithAlbum(singers);
 	 }
 	 
-
+	 @Test
 	 public void testFindAll(){
 		 List<Singer> singers = singerDao.findAll();
-		 //assertEquals(3, singers.size());
+		 assertEquals(3, singers.size());
 		 listSingers(singers);
 	 }
 	 
-
+	 @Test
 	 public void testFindAllWithAlbum(){
 		 List<Singer> singers = singerDao.findAllWithAlbum();
-		 //assertEquals(3, singers.size());
+		 assertEquals(3, singers.size());
 		 listSingersWithAlbum(singers);
 	 }
 	 
-
+	 @Test
 	 public void testFindByID(){
 		 Singer singer = singerDao.findById(1L);
-		 //assertNotNull(singer);
+		 assertNotNull(singer);
 		 logger.info(singer.toString());
 	 }
-	 */
+	 
 	 private static void listSingers(List<Singer> singers) {
 		 logger.info(" ---- Listing singers:");
 		 for (Singer singer : singers) {
@@ -124,9 +98,8 @@ public class Chapter7Application {
 		 }
 	 }
 	 
-/*
+	 @After
 	 public void tearDown(){
 		 ctx.close();
 	 }
-*/
 }
