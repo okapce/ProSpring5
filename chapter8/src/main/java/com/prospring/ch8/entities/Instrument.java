@@ -23,4 +23,17 @@ package com.prospring.ch8.entities;
 	 inverseJoinColumns = @JoinColumn(name = "SINGER_ID"))
 	 private Set<Singer> singers = new HashSet<>();
 	 //setters and getters
+	public String getInstrumentId() {
+		return instrumentId;
+	}
+	public Set<Singer> getSingers() {
+		return singers;
+	}
+	public void setInstrumentId(String instrumentId) {
+		this.instrumentId = instrumentId;
+	}
+	public void setSingers(Set<Singer> singers) {
+		this.singers = singers;
+	}
+	 
 }

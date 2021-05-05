@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Column;
 import javax.persistence.Version;
+
+import com.prospring.ch8.entities.Album;
+
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.OneToMany;
@@ -69,9 +72,56 @@ public class Singer implements Serializable {
  private Set<Instrument> instruments = new HashSet<>();
  
 //setters and getters
+public Set<Album> getAlbums() {
+	return albums;
+}
+
+public void setVersion(int version) {
+	this.version = version;
+}
+
+public void setFirstName(String firstName) {
+	this.firstName = firstName;
+}
+
+public void setLastName(String lastName) {
+	this.lastName = lastName;
+}
+
+public void setBirthDate(Date birthDate) {
+	this.birthDate = birthDate;
+}
+
+public Long getId() {
+	return id;
+}
+
+public void setId(Long id) {
+	this.id = id;
+}
+
+public void setAlbums(Set<Album> albums) {
+	this.albums = albums;
+}
+
+public Set<Instrument> getInstruments() {
+	return instruments;
+}
+
+public void setInstruments(Set<Instrument> instruments) {
+	this.instruments = instruments;
+}
+
+public boolean addAlbum(Album album) {
+	 album.setSinger(this);
+	 return getAlbums().add(album);
+}
+
 @Override
 public String toString() {
 return "Singer - Id: " + id + ", First name: " + firstName
 + ", Last name: " + lastName + ", Birthday: " + birthDate;
 }
+
+
 }
