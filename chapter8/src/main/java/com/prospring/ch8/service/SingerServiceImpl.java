@@ -21,15 +21,14 @@ import org.apache.commons.logging.LogFactory;
 @Repository
 @Transactional
 public class SingerServiceImpl implements SingerService {
-	 final static String ALL_SINGER_NATIVE_QUERY =
-			 "select id, first_name, last_name, birth_date, version from singer";
+	 final static String ALL_SINGER_NATIVE_QUERY = "select id, first_name, last_name, birth_date, version from singer";
 			 private static Logger logger =	 LoggerFactory.getLogger(SingerServiceImpl.class);
 			 @PersistenceContext
 			 private EntityManager em;
 			 @Transactional(readOnly=true)
 			 @Override
 			 public List<Singer> findAll() {
-			 throw new NotImplementedException("findAll");
+				 return em.createNamedQuery(Singer.FIND_ALL, Singer.class).getResultList();
 			 }
 			 @Transactional(readOnly=true)
 			 @Override
