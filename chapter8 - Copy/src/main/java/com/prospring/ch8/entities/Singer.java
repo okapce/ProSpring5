@@ -117,23 +117,6 @@ public boolean addAlbum(Album album) {
 	 return getAlbums().add(album);
 }
 
-
-public int getVersion() {
-	return version;
-}
-
-public String getFirstName() {
-	return firstName;
-}
-
-public String getLastName() {
-	return lastName;
-}
-
-public Date getBirthDate() {
-	return birthDate;
-}
-
 @Override
 public String toString() {
 return "Singer - Id: " + id + ", First name: " + firstName
