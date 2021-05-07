@@ -1,4 +1,4 @@
-package com.prospring.ch8.config;
+package com.prospring.ch8.config.temp;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
