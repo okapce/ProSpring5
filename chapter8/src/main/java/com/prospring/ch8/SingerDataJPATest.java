@@ -1,6 +1,7 @@
 package com.prospring.ch8;
 
-import com.prospring.ch8.config.DataJpaConfig;
+import com.prospring.ch8.config.DBInitializer;
+//import com.prospring.ch8.config.DataJpaConfig;
 import com.prospring.ch8.entities.Album;
 import com.prospring.ch8.entities.Singer;
 import com.prospring.ch8.service.AlbumService;
@@ -15,7 +16,7 @@ public class SingerDataJPATest {
 	private static Logger logger = LoggerFactory.getLogger(SingerDataJPATest.class);
 	
 	public static void main(String[] args) {
-		GenericApplicationContext ctx = new AnnotationConfigApplicationContext(DataJpaConfig.class);
+		GenericApplicationContext ctx = new AnnotationConfigApplicationContext(DBInitializer.class); //replaced DataJpaConfig
 		//SingerService singerService = ctx.getBean(SingerService.class);
 		AlbumService albumService = ctx.getBean(AlbumService.class);
 		

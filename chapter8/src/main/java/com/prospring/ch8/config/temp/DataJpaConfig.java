@@ -25,7 +25,7 @@ import java.util.Properties;
 public class DataJpaConfig {
  private static Logger logger = LoggerFactory.getLogger(DataJpaConfig.class);
  @Bean
- public DataSource dataSource() {
+ public DataSource dataSourceDJPA() {
 	 try {
 		 EmbeddedDatabaseBuilder dbBuilder = new EmbeddedDatabaseBuilder();
 		 return dbBuilder.setType(EmbeddedDatabaseType.H2) .addScripts("classpath:sql/schema.sql", "classpath:sql/test-data.sql").build();
@@ -36,15 +36,15 @@ public class DataJpaConfig {
  }
  
  @Bean
- public PlatformTransactionManager transactionManager() {
-	 return new JpaTransactionManager(entityManagerFactory());
+ public PlatformTransactionManager transactionManagerDJPA() {
+	 return new JpaTransactionManager(entityManagerFactoryDJPA());
  }
  @Bean
- public JpaVendorAdapter jpaVendorAdapter() {
+ public JpaVendorAdapter DJPAVendorAdapter() {
 	 return new HibernateJpaVendorAdapter();
  }
  @Bean
- public Properties hibernateProperties() {
+ public Properties hibernatePropertiesDJPA() {
 	 Properties hibernateProp = new Properties();
 	 hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 	 hibernateProp.put("hibernate.format_sql", true);
@@ -57,13 +57,13 @@ public class DataJpaConfig {
  }
  
  @Bean
- public EntityManagerFactory entityManagerFactory() {
+ public EntityManagerFactory entityManagerFactoryDJPA() {
 	 LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 	 factoryBean.setPackagesToScan("com.prospring.ch8.entities");
-	 factoryBean.setDataSource(dataSource());
+	 factoryBean.setDataSource(dataSourceDJPA());
 	 factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-	 factoryBean.setJpaProperties(hibernateProperties());
-	 factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+	 factoryBean.setJpaProperties(hibernatePropertiesDJPA());
+	 factoryBean.setJpaVendorAdapter(DJPAVendorAdapter());
 	 factoryBean.afterPropertiesSet();
 	 return factoryBean.getNativeEntityManagerFactory();
  }

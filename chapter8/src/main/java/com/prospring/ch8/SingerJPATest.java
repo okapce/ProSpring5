@@ -11,7 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
-import com.prospring.ch8.config.JpaConfig;
+import com.prospring.ch8.config.DBInitializer;
+//import com.prospring.ch8.config.JpaConfig;
 import com.prospring.ch8.entities.Album;
 import com.prospring.ch8.entities.Instrument;
 import com.prospring.ch8.entities.Singer;
@@ -22,7 +23,7 @@ public class SingerJPATest {
 	private static Logger logger = LoggerFactory.getLogger(SingerJPATest.class);
 	public static SingerService singerService;
 	public static void main(String[] args) {
-		GenericApplicationContext ctx = new AnnotationConfigApplicationContext(JpaConfig.class);
+		GenericApplicationContext ctx = new AnnotationConfigApplicationContext(DBInitializer.class); //replaced JpaConfig
 		//singerService = ctx.getBean(SingerService.class);
 		singerService = ctx.getBean("jpaSingerService", SingerService.class);
 		

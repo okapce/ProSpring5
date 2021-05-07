@@ -116,6 +116,12 @@ public boolean addAlbum(Album album) {
 	 album.setSinger(this);
 	 return getAlbums().add(album);
 }
+/*
+public boolean addInstrument(Instrument instrument) {
+	instrument.setSingers(this);
+	return getAlbums().add(instrument);
+}
+*/
 
 
 public int getVersion() {

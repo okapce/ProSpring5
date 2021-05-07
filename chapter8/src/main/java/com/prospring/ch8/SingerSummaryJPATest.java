@@ -7,7 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericApplicationContext;
 
-import com.prospring.ch8.config.JpaConfig;
+import com.prospring.ch8.config.DBInitializer;
+//import com.prospring.ch8.config.JpaConfig;
 import com.prospring.ch8.service.SingerService;
 import com.prospring.ch8.service.SingerSummaryService;
 import com.prospring.ch8.service.SingerSummaryUntypeImpl;
@@ -17,7 +18,7 @@ public class SingerSummaryJPATest {
 	private static Logger logger = LoggerFactory.getLogger(SingerSummaryJPATest.class);
 
 	public static void main(String[] args) {
-		GenericApplicationContext ctx = new AnnotationConfigApplicationContext(JpaConfig.class);
+		GenericApplicationContext ctx = new AnnotationConfigApplicationContext(DBInitializer.class); //replace JPACOnfig
 		//SingerSummaryUntypeImpl singerSummaryUntype = ctx.getBean(SingerSummaryUntypeImpl.class);
 		SingerSummaryService singerSummaryService = ctx.getBean(SingerSummaryService.class);
 

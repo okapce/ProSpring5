@@ -24,7 +24,7 @@ import java.util.Properties;
 public class JpaConfig {
 	private static Logger logger = LoggerFactory.getLogger(JpaConfig.class);
 	 @Bean
-	 public DataSource dataSource() {
+	 public DataSource dataSourceJPA() {
 		 try {
 			 EmbeddedDatabaseBuilder dbBuilder = new EmbeddedDatabaseBuilder();
 			 return dbBuilder.setType(EmbeddedDatabaseType.H2).addScripts("classpath:sql/schema.sql", "classpath:sql/test-data.sql").build();
@@ -35,17 +35,17 @@ public class JpaConfig {
 	 }
 	 
 	 @Bean
-	 public PlatformTransactionManager transactionManager() {
-		 return new JpaTransactionManager(entityManagerFactory());
+	 public PlatformTransactionManager transactionManagerJPA() {
+		 return new JpaTransactionManager(entityManagerFactoryJPA());
 	 }
 	 
 	 @Bean
-	 public JpaVendorAdapter jpaVendorAdapter() {
+	 public JpaVendorAdapter JPAVendorAdapter() {
 		 return new HibernateJpaVendorAdapter();
 	 }
 	 
 	 @Bean
-	 public Properties hibernateProperties() {
+	 public Properties hibernatePropertiesJPA() {
 		 Properties hibernateProp = new Properties();
 		 hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 		 hibernateProp.put("hibernate.format_sql", true);
@@ -58,13 +58,13 @@ public class JpaConfig {
 	 }
 	 
 	 @Bean
-	 public EntityManagerFactory entityManagerFactory() {
+	 public EntityManagerFactory entityManagerFactoryJPA() {
 		 LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		 factoryBean.setPackagesToScan("com.prospring.ch8.entities");
-		 factoryBean.setDataSource(dataSource());
+		 factoryBean.setDataSource(dataSourceJPA());
 		 factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-		 factoryBean.setJpaProperties(hibernateProperties());
-		 factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+		 factoryBean.setJpaProperties(hibernatePropertiesJPA());
+		 factoryBean.setJpaVendorAdapter(JPAVendorAdapter());
 		 factoryBean.afterPropertiesSet();
 		 return factoryBean.getNativeEntityManagerFactory();
 	 }
