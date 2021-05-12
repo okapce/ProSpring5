@@ -26,11 +26,11 @@ public class DataJpaConfig {
 	 try {
 		 SimpleDriverDataSource dataSource = new SimpleDriverDataSource();
 		 Class<? extends Driver> driver =
-		 (Class<? extends Driver>) Class.forName("org.h2.Driver");
+		 (Class<? extends Driver>) Class.forName("org.postgresql.Driver");
 		 dataSource.setDriverClass(driver);
-		 dataSource.setUrl("jdbc:h2:musicdb");
-		 dataSource.setUsername("prospring5");
-		 dataSource.setPassword("prospring5");
+		 dataSource.setUrl("jdbc:postgresql://localhost:5432/postgres?useSSL=true");
+		 dataSource.setUsername("postgres");
+		 dataSource.setPassword("admin");
 		 return dataSource;
 	 } catch (Exception e) {
 		 logger.error("Populator DataSource bean cannot be created!", e);
@@ -40,7 +40,7 @@ public class DataJpaConfig {
  @Bean
  public Properties hibernateProperties() {
 	 Properties hibernateProp = new Properties();
-	 hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+	 hibernateProp.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL82Dialect");
 	 hibernateProp.put("hibernate.hbm2ddl.auto", "create-drop");
 	 //hibernateProp.put("hibernate.format_sql", true);
 	 hibernateProp.put("hibernate.show_sql", true);
