@@ -36,11 +36,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<dependency>
-		    <groupId>com.google.common</groupId>
-		    <artifactId>google-collect</artifactId>
-		    <version>0.5</version>
-		</dependency>
+
 	</dependencies>
 
 	<build>
