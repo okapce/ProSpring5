@@ -19,7 +19,7 @@ import java.util.Properties;
 
 
 @Configuration
-@EnableJpaRepositories(basePackages = {"com.prospring.ch16.repos"})
+@EnableJpaRepositories(basePackages = {"com.prospring.ch16.repo"})
 @ComponentScan(basePackages = {"com.prospring.ch16"} )
 public class DataServiceConfig {
 	
