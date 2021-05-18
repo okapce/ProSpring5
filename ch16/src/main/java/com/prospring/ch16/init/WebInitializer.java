@@ -5,8 +5,11 @@ import com.prospring.ch16.config.SecurityConfig;
 import com.prospring.ch16.config.WebConfig;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 import javax.servlet.Filter;
+
+
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 	@Override

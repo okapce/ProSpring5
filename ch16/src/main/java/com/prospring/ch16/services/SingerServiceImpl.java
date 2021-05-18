@@ -19,8 +19,9 @@ public class SingerServiceImpl implements SingerService {
 	@Override
 	@Transactional(readOnly=true)
 	public List<Singer> findAll() {
-		//List list = new ArrayList<>(singerRepository.findAll());
-		return null;//Lists.newArrayList(singerRepository.findAll());
+		List list = new ArrayList<>();
+		list.add(singerRepository.findAll());
+		return list;//Lists.newArrayList(singerRepository.findAll());
 	}
 	
 	@Override
