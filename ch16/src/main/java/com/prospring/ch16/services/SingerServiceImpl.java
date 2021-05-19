@@ -9,7 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-//import com.google.common.collect.Lists;
+import com.google.common.collect.Lists;
 
 @Transactional
 @Service("singerService")
@@ -19,9 +19,9 @@ public class SingerServiceImpl implements SingerService {
 	@Override
 	@Transactional(readOnly=true)
 	public List<Singer> findAll() {
-		List list = new ArrayList<>();
-		list.add(singerRepository.findAll());
-		return list;//Lists.newArrayList(singerRepository.findAll());
+		//List list = new ArrayList<>();
+		//list.add(singerRepository.findAll());
+		return Lists.newArrayList(singerRepository.findAll());
 	}
 	
 	@Override

@@ -42,8 +42,12 @@
 		    <artifactId>spring-security-core</artifactId>
 		</dependency>
 		
-
-				
+		<dependency>
+		  <groupId>com.google.guava</groupId>
+		  <artifactId>guava</artifactId>
+		  <version>30.1.1-jre</version>
+		</dependency>
+						
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
