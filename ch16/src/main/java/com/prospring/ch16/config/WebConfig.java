@@ -29,8 +29,9 @@ public class WebConfig implements WebMvcConfigurer {
 	@Bean
 	InternalResourceViewResolver viewResolver(){
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-		resolver.setPrefix("webapp/WEB-INF/views"); resolver.setSuffix(".jspx" );
-		resolver.setRequestContextAttribute("requestContext"); return resolver; 
+		resolver.setPrefix("/WEB-INF/views"); resolver.setSuffix(".jspx" );
+		resolver.setRequestContextAttribute("requestContext"); 
+		return resolver; 
 	}
 	
 	// <=> <mvc:view-controller .../>
@@ -45,6 +46,7 @@ public class WebConfig implements WebMvcConfigurer {
 		configurer.enable();
 	}
 	
+	/*
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 	 //registry.addInterceptor(localeChangeInterceptor());
@@ -61,7 +63,7 @@ public class WebConfig implements WebMvcConfigurer {
 	 return new ResourceBundleThemeSource();
 	}
 	
-	/*
+	
 	@Bean
 	CookieThemeResolver themeResolver() {
 	 CookieThemeResolver cookieThemeResolver = new CookieThemeResolver();

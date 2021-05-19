@@ -29,7 +29,8 @@ public class DataServiceConfig {
 	public DataSource dataSource() {
 		try {
 			 EmbeddedDatabaseBuilder dbBuilder = new EmbeddedDatabaseBuilder();
-			 return dbBuilder.setType(EmbeddedDatabaseType.H2).build();
+			 return dbBuilder.setType(EmbeddedDatabaseType.H2).addScripts("classpath:sql/schema.sql","classpath:sql/data.sql").
+					 build();
 		} catch (Exception e) {
 			 logger.error("Embedded DataSource bean cannot be created!", e);
 			 return null;
@@ -60,7 +61,7 @@ public class DataServiceConfig {
 	
 	@Bean
 	public EntityManagerFactory entityManagerFactory() {
-		LocalContainerEntityManagerFactoryBean factoryBean =new LocalContainerEntityManagerFactoryBean();
+		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
 		factoryBean.setPackagesToScan("com.prospring.ch16.entities");
 		factoryBean.setDataSource(dataSource());
 		factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
