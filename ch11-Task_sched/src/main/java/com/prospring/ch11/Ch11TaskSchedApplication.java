@@ -1,13 +1,13 @@
-package com.prospring.ch16;
+package com.prospring.ch11;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class Ch16TaskSchedApplication {
+public class Ch11TaskSchedApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Ch16TaskSchedApplication.class, args);
+		SpringApplication.run(Ch11TaskSchedApplication.class, args);
 	}
 
 }
